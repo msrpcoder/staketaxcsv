@@ -1,30 +1,39 @@
-import staketaxcsv.common.ibc.constants as co
-import staketaxcsv.osmo.api_historical
+import json
+import pprint
+
 from staketaxcsv.common.ibc.MsgInfoIBC import MsgInfoIBC
-from staketaxcsv.osmo.config_osmo import localconfig
+from staketaxcsv.osmo.constants import MSG_TYPE_EXECUTE_CONTRACT
+from staketaxcsv.osmo import denoms as denoms_osmo
 
 
 class MsgInfoOsmo(MsgInfoIBC):
 
-    def amount_float(self, amount_string, currency):
-        if currency == co.CUR_CRO:
-            return float(amount_string) / co.MILLION / 100
-        elif currency in [co.CUR_FET, co.CUR_EVMOS]:
-            return float(amount_string) / co.EXP18
-        elif currency == co.CUR_MOBX:
-            return float(amount_string) / co.EXP9
-        elif currency.startswith("GAMM-"):
-            return float(amount_string) / co.EXP18
-        else:
-            return float(amount_string) / float(10 ** self._exponent(currency))
+    def __init__(self, wallet_address, msg_index, message, log, lcd_node):
+        super().__init__(wallet_address, msg_index, message, log, lcd_node)
+        self.events_by_type = self._events_by_type()
+        self.execute_contract_message = self._execute_contract_message()
 
-    def _exponent(self, currency):
-        if currency in localconfig.exponents:
-            return int(localconfig.exponents[currency])
+    def amount_currency_single(self, amount_raw, currency_raw):
+        return denoms_osmo.amount_currency_from_raw(amount_raw, currency_raw, self.lcd_node)
 
-        exponent = staketaxcsv.osmo.api_historical.get_exponent(currency)
-        if exponent is None:
-            exponent = 6
+    def _execute_contract_message(self):
+        if self.msg_type == MSG_TYPE_EXECUTE_CONTRACT:
+            m = self.message
+            if "msg" in m:
+                return m["msg"]
+            elif "msg__@stringify" in m:
+                msg_str = m["msg__@stringify"]
+                if isinstance(msg_str, str):
+                    return json.loads(msg_str)
+                elif isinstance(msg_str, list):
+                    msg_str = "".join(msg_str)
+                    return json.loads(msg_str)
+                else:
+                    raise Exception("unable to handle msg__@stringify in _execute_contract_message()")
 
-        localconfig.exponents[currency] = exponent
-        return int(localconfig.exponents[currency])
+        return {}
+
+    def print(self):
+        super().print()
+        print("\n\texecute_contract_message:")
+        pprint.pprint(self.execute_contract_message)

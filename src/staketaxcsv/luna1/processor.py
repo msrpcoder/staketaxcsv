@@ -54,7 +54,8 @@ def process_tx(wallet_address, elem, exporter):
         elif msgtype == "market/MsgSwap":
             handle_swap_msgswap(exporter, elem, txinfo)
         elif msgtype in ["staking/MsgDelegate", "distribution/MsgWithdrawDelegationReward",
-                         "staking/MsgBeginRedelegate", "staking/MsgUndelegate"]:
+                         "staking/MsgBeginRedelegate", "staking/MsgUndelegate",
+                         "distribution/MsgWithdrawDelegatorReward"]:
             # LUNA staking reward
             handle_reward(exporter, elem, txinfo, msgtype)
         elif msgtype == "wasm/MsgExecuteContract":
@@ -75,9 +76,6 @@ def process_tx(wallet_address, elem, exporter):
         logging.error("Exception when handling txid=%s, exception=%s", txid, str(e))
         ErrorCounter.increment("exception", txid)
         handle_unknown(exporter, txinfo)
-
-        if localconfig.debug:
-            raise (e)
 
     return txinfo
 
