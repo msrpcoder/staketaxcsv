@@ -13,13 +13,12 @@ from staketaxcsv.common import ExporterTypes as et
 from staketaxcsv.common.ExporterTypes import TX_TYPE_UNKNOWN
 from staketaxcsv.common.exporter_koinly import NullMap
 
-from staketaxcsv.settings_csv import TICKER_ALGO, TICKER_LUNA1, TICKER_LUNA2, TICKER_OSMO
+from staketaxcsv.settings_csv import TICKER_ALGO, TICKER_ATOM, TICKER_LUNA1, TICKER_LUNA2, TICKER_OSMO
 from staketaxcsv.luna1.constants import EXCHANGE_TERRA_CLASSIC_BLOCKCHAIN
-
+#from tabulate import tabulate
 
 
 class Row:
-
     def __init__(self, timestamp, tx_type, received_amount, received_currency, sent_amount, sent_currency, fee,
                  fee_currency, exchange, wallet_address, txid, url="", z_index=0, comment="", block_svc_hash=""):
         self.timestamp = timestamp

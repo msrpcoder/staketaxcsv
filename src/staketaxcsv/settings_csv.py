@@ -25,16 +25,16 @@ DYDX_NODE = os.environ.get("STAKETAX_DYDX_NODE", "https://rest-dydx.ecostake.com
 DYM_NODE = os.environ.get("STAKETAX_DYM_NODE", "https://dymension-api.lavenderfive.com")
 EVMOS_NODE = os.environ.get("STAKETAX_EVMOS_NODE", "https://rest-evmos.ecostake.com")
 FET_NODE = os.environ.get("STAKETAX_FET_NODE", "https://rest-fetchhub.fetch.ai")
+HUAHUA_NODE = os.environ.get("STAKETAX_HUAHUA_NODE", "https://rest-chihuahua.ecostake.com")
+JUNO_NODE = os.environ.get("STAKETAX_JUNO_NODE", "https://juno-api.polkachu.com")
+JUNO_RPC_NODES = [
+    "https://rpc-archive.junonetwork.io",      # 4136532 to now
+    "https://rpc-v3-archive.junonetwork.io",   # 2578099 to #4136530
+    "https://rpc-v2-archive.junonetwork.io",   # 1 to #2578097
+]
 GRAV_NODE = os.environ.get("STAKETAX_GRAV_NODE", "https://gravitychain.io:26657")
 GRAV_NODE_RPC = os.environ.get("STAKETAX_GRAV_NODE_RPC", "")
-HUAHUA_NODE = os.environ.get("STAKETAX_HUAHUA_NODE", "https://rest-chihuahua.ecostake.com")
 INJ_NODE = os.environ.get("STAKETAX_INJ_NODE", "https://injective-api.polkachu.com")
-JUNO_NODE = os.environ.get("STAKETAX_JUNO_NODE", "https://juno-api.polkachu.com")
-JUNO_NODES_RPC = [
-    "https://rpc-archive.junonetwork.io",      # 4136532 to now
-    #"https://rpc-v3-archive.junonetwork.io",   # 2578099 to #4136530
-    #"https://rpc-v2-archive.junonetwork.io",   # 1 to #2578097
-]
 KUJI_NODE = os.environ.get("STAKETAX_KUJI_NODE", "")
 KUJI_NODE_TXS = os.environ.get("STAKETAX_KUJI_NODE_TXS", KUJI_NODE)
 KYVE_NODE = os.environ.get("STAKETAX_KYVE_NODE", "https://api-eu-1.kyve.network")

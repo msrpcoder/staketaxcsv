@@ -34,6 +34,7 @@ def retry(max_retries: int = 5):
         return _inner2
     return _inner1
 
+
 def remove_duplicates(elems, tx_hash_key="txhash", timestamp_sort=True):
     out = []
     txids = set()

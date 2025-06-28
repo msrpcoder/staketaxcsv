@@ -141,11 +141,11 @@ def _get_txs(wallet_address, dapps, progress):
         if localconfig.track_block and len(out) > 0:
             last_round = out[-1]["confirmed-round"]
 
-        for app in dapps:
-            out.extend(app.get_extra_transactions())
+    for app in dapps:
+        out.extend(app.get_extra_transactions())
 
-        if last_round:
-            localconfig.min_round = last_round + 1
+    if last_round:
+        localconfig.min_round = last_round + 1
 
     num_tx = len(out)
 

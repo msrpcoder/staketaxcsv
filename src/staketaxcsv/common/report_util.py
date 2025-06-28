@@ -1,5 +1,4 @@
 import argparse
-import datetime
 import logging
 import os
 
@@ -22,13 +21,13 @@ def main_default(ticker):
     logging.basicConfig(level=logging.INFO)
 
     wallet_address, export_format, txid, options = parse_args(ticker)
-    run_report(ticker, wallet_address, export_format, txid, options)
+    return run_report(ticker, wallet_address, export_format, txid, options)
 
 
 def run_report(ticker, wallet_address, export_format, txid, options):
     if txid:
         path = "{}/{}.{}.csv".format(REPORTS_DIR, txid, export_format)
-        staketaxcsv.api.transaction(ticker, wallet_address, txid, export_format, path, options)
+        return staketaxcsv.api.transaction(ticker, wallet_address, txid, export_format, path, options)
     elif options.get("historical"):
         path = "{}/{}.{}.{}.csv".format(REPORTS_DIR, ticker, wallet_address, BALANCES_HISTORICAL)
         staketaxcsv.api.historical_balances(ticker, wallet_address, path, options)
