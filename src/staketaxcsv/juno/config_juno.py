@@ -1,6 +1,7 @@
 from staketaxcsv.common.config import config
+from staketaxcsv.settings_csv import MINTSCAN_MAX_TXS
 
 
 class localconfig(config):
 
-    ibc_addresses = {}
+    limit = 10000

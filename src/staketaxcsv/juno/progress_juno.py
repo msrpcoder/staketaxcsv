@@ -1,4 +1,4 @@
-from staketaxcsv.common.progress_rpc_nodes import ProgressRpc
+from staketaxcsv.common.ibc.progress_rpc_nodes import ProgressRpc
 from staketaxcsv.juno.config_juno import localconfig
 
 SECONDS_PER_PAGE = 4
