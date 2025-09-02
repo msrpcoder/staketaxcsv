@@ -27,7 +27,7 @@ EVMOS_NODE = os.environ.get("STAKETAX_EVMOS_NODE", "https://rest-evmos.ecostake.
 FET_NODE = os.environ.get("STAKETAX_FET_NODE", "https://rest-fetchhub.fetch.ai")
 HUAHUA_NODE = os.environ.get("STAKETAX_HUAHUA_NODE", "https://rest-chihuahua.ecostake.com")
 JUNO_NODE = os.environ.get("STAKETAX_JUNO_NODE", "https://juno-api.polkachu.com")
-JUNO_RPC_NODES = [
+JUNO_NODES_RPC = [
     "https://rpc-archive.junonetwork.io",      # 4136532 to now
     "https://rpc-v3-archive.junonetwork.io",   # 2578099 to #4136530
     "https://rpc-v2-archive.junonetwork.io",   # 1 to #2578097
